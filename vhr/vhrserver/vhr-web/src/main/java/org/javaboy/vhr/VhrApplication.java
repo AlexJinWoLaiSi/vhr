@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
@@ -13,7 +14,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class VhrApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(VhrApplication.class, args);
+        ConfigurableApplicationContext ctx = SpringApplication.run(VhrApplication.class, args);
+        String[] beanDefinitionNames = ctx.getBeanDefinitionNames();
+        for (int i = 0; i < beanDefinitionNames.length; i++) {
+            System.out.println(beanDefinitionNames[i]);
+        }
     }
 
 }
